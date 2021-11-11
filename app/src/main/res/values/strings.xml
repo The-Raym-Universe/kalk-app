@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Kalk</string>
+    <string name="course_code_hint"><i>Course Code Here</i></string>
+    <string name="credit_unit_hint"><i>Credit Unit Here</i></string>
+    <string name="pick_a_course">Input Course</string>
+    <string name="course_hint"><i>Example: "MTH101"</i></string>
+    <string name="input_grade">Input Grade</string>
+    <string name="grade_hint"><i>Example: "75"</i></string>
+    <string name="done">done</string>
+    <string name="your_calculated_grade_point_average_is">Your Calculated Grade Point Average is:</string>
+    <string name="default_result">5.00</string>
+</resources>

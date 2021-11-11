@@ -1,0 +1,2 @@
+rootProject.name = "Kalk"
+include ':app'

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/navigation_register_course"
+            android:icon="@drawable/edit"
+            android:title="Register Courses"/>
+
+    <item
+            android:id="@+id/navigation_calculate_gp"
+            android:icon="@drawable/calculator"
+            android:title="Calculate GP"/>
+
+    <item
+            android:id="@+id/navigation_profile"
+            android:icon="@drawable/user"
+            android:title="Profile"/>
+
+    <item
+            android:id="@+id/navigation_settings"
+            android:icon="@drawable/settings"
+            android:title="Settings"/>
+
+    <item
+            android:id="@+id/navigation_history"
+            android:icon="@drawable/history"
+            android:title="History"/>
+
+</menu>
