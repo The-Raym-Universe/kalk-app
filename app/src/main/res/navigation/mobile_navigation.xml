@@ -8,13 +8,13 @@
     <fragment
             android:id="@+id/navigation_register_course"
             android:name="com.raym.kalk.ui.register.RegisterFragment"
-            android:label="Register Courses"
+            android:label="Register"
             tools:layout="@layout/fragment_register_course"/>
 
     <fragment
             android:id="@+id/navigation_calculate_gp"
             android:name="com.raym.kalk.ui.calculate.CalculateFragment"
-            android:label="Calculate GPA"
+            android:label="Calculate"
             tools:layout="@layout/fragment_calculate"/>
 
     <fragment
@@ -26,12 +26,12 @@
     <fragment
             android:id="@+id/navigation_settings"
             android:name="com.raym.kalk.ui.settings.SettingsFragment"
-            android:label="Profile"
+            android:label="Settings"
             tools:layout="@layout/fragment_profile"/>
 
     <fragment
             android:id="@+id/navigation_history"
             android:name="com.raym.kalk.ui.settings.SettingsFragment"
-            android:label="Profile"
+            android:label="History"
             tools:layout="@layout/fragment_profile"/>
 </navigation>

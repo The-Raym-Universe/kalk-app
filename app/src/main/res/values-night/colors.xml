@@ -10,6 +10,6 @@
     <color name="grey">#9FAEAC</color>
     <color name="kalk_red">#630606</color>
     <color name="kalk_green">#0D7311</color>
-    <color name="kalk_light_green">#90ee90</color>
     <color name="kalk_background">#f2f2f2</color>
+    <color name="kalk_light_green">#90ee90</color>
 </resources>

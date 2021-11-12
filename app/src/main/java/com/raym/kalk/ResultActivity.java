@@ -13,7 +13,7 @@ public class ResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_result);
+        setContentView(R.layout.activity_result);
         TextView noticeGradeResult = findViewById(R.id.notice_grade_result);
         TextView gradeResult = findViewById(R.id.grade_result);
 
