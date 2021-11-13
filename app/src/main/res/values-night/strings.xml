@@ -10,5 +10,7 @@
     <string name="done">done</string>
     <string name="your_calculated_grade_point_average_is">Your Calculated Grade Point Average is:</string>
     <string name="default_result">5.00</string>
-    <string name="register_n_the_courses">Register the Courses</string>
+    <string name="register_n_the_courses">Register / Remove Courses</string>
+    <string name="result">RESULT</string>
+    <string name="calculate_cgpa">calculate cgpa</string>
 </resources>

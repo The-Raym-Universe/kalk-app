@@ -71,8 +71,6 @@ public class CalculateFragment extends Fragment {
                     mGrade = Integer.parseInt(mCourseGradeEditText.getText().toString());
                     mCourseGradeEditText.setText(EMPTY_PLACE);
                     mGradeEquivalent = checkGradeEquivalent(mGrade);
-                    mCourseChoiceEditText.setFocusable(View.FOCUSABLE);
-                    mCourseGradeEditText.setFocusable(View.NOT_FOCUSABLE);
 
                     mTotalCreditUnit = mCalculator.calculateTotalCreditUnits(mCreditUnit);
                     mCreditLoad = mCalculator.calculateCreditLoad(mCreditUnit, mGradeEquivalent);
@@ -81,7 +79,7 @@ public class CalculateFragment extends Fragment {
                     hideKeyBoard();
                     mCourseGradeEditText.setText(EMPTY);
                     mCourseChoiceEditText.setText(EMPTY);
-                    mCourseChoiceEditText.setFocusable(View.FOCUSABLE_AUTO);
+                    mCourseChoiceEditText.setFocusable(View.FOCUSABLE);
                     Snackbar.make(root,"That course is not registered or does not exist, Try again.", BaseTransientBottomBar.LENGTH_SHORT).show();
                 }
             }

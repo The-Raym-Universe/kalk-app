@@ -7,6 +7,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.raym.kalk.R;
 
+import java.util.Objects;
+
 /***Created by Leo*/
 
 public class ResultActivity extends AppCompatActivity {
@@ -15,6 +17,7 @@ public class ResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+        Objects.requireNonNull(getSupportActionBar()).hide();
         TextView noticeGradeResult = findViewById(R.id.notice_grade_result);
         TextView gradeResult = findViewById(R.id.grade_result);
 

@@ -25,7 +25,7 @@ public class RegisterFragment extends Fragment {
     private final ArrayList<Course> mCourseArrayList = new ArrayList<>();
     private EditText mCourseCodeEditText;
     private EditText mCreditUnitEditText;
-    private Button mCalculateGpButton;
+    private Button mRemoveCourseButton;
     private Button mAddCourseButton;
     private Course mSingleCourse;
     private String mCourseCode;
@@ -35,16 +35,13 @@ public class RegisterFragment extends Fragment {
     private InputMethodManager mInputMethodManager;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View root = inflater.inflate(R.layout.fragment_register_course, container, false);
 
         mCourseCodeEditText = root.findViewById(R.id.editTxt_course_code);
         mCreditUnitEditText = root.findViewById(R.id.editTxt_credit_unit);
-        mCalculateGpButton = root.findViewById(R.id.calculate_gp);
+        mRemoveCourseButton = root.findViewById(R.id.remove_course);
         mAddCourseButton = root.findViewById(R.id.button_add_course);
-
-        mCalculateGpButton.setOnClickListener(view -> {
-            Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
-        });
 
         mAddCourseButton.setOnClickListener(view -> {
             //get the course code and credit unit from the user and convert them to a string and
@@ -58,7 +55,7 @@ public class RegisterFragment extends Fragment {
                 Snackbar.make(root, "Please input the Correct items for the either fields", Snackbar.LENGTH_SHORT).show();
             } else {
                 hideKeyBoard();
-                mCourseCode = mCourseCodeEditText.getText().toString();
+                mCourseCode = mCourseCodeEditText.getText().toString().trim();
                 String courseCode = mCourseCode.toUpperCase();
                 mCourseCodeEditText.setText(EMPTY);
                 /*for credit unit*/
@@ -78,6 +75,10 @@ public class RegisterFragment extends Fragment {
                 Snackbar.make(root, "Added: " + mSingleCourse.getCourseCode() + "{ " + mSingleCourse.getCreditUnit()
                         + " credit unit(s)}", BaseTransientBottomBar.LENGTH_SHORT).show();
             }
+        });
+
+        mRemoveCourseButton.setOnClickListener(view -> {
+            Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
         });
 
         return root;
