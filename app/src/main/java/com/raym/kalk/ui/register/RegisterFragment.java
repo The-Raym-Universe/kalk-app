@@ -54,10 +54,10 @@ public class RegisterFragment extends Fragment {
             /*for course code*/
             if (mCourseCodeEditText.getText().toString().equals("") || mCreditUnitEditText.getText().toString().equals("")) {
                 hideKeyBoard();
-                Snackbar.make(root, "Cannot Input Empty Values, DUH!!", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(root, "Cannot Input Empty Values for Either Course code or Credit Unit, DUH!!", Snackbar.LENGTH_SHORT).show();
             } else if (mCourseCodeEditText.getText().toString().length() < 3 || Integer.parseInt(mCreditUnitEditText.getText().toString()) < 0) {
                 hideKeyBoard();
-                Snackbar.make(root, "Please input the Correct items for the fields", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(root, "Please input the Correct items for the either fields", Snackbar.LENGTH_SHORT).show();
             } else {
                 hideKeyBoard();
                 mCourseCode = mCourseCodeEditText.getText().toString();
