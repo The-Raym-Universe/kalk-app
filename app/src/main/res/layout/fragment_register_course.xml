@@ -36,10 +36,11 @@
             android:layout_marginStart="34dp"
             android:textAlignment="center"
             android:outlineProvider="bounds"
+            android:textColor="@color/black"
+            android:imeOptions="actionNext"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/editTxt_credit_unit"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintHorizontal_bias="0.0"/>
+            app:layout_constraintTop_toBottomOf="@+id/textView"/>
 
     <EditText
             android:id="@+id/editTxt_credit_unit"
@@ -52,7 +53,9 @@
             android:typeface="sans"
             android:padding="8dp"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:outlineAmbientShadowColor="@color/grey"
+            android:imeOptions="actionDone"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/editTxt_course_code"

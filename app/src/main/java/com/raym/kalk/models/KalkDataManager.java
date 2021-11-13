@@ -15,7 +15,6 @@ public class KalkDataManager {
     private List<Course> mCourseArrayList = new ArrayList<>();
 
     public KalkDataManager() {
-
     }
 
     //singleton construction

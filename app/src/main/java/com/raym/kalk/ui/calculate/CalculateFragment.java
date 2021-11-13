@@ -1,5 +1,6 @@
 package com.raym.kalk.ui.calculate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +10,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.raym.kalk.R;
-import com.raym.kalk.databinding.FragmentCalculateBinding;
+import com.raym.kalk.ResultActivity;
 import com.raym.kalk.models.Calculator;
 import com.raym.kalk.models.Course;
 import com.raym.kalk.models.KalkDataManager;
@@ -19,10 +21,6 @@ import com.raym.kalk.models.KalkDataManager;
 import java.util.ArrayList;
 
 public class CalculateFragment extends Fragment {
-
-    private CalculateViewModel calculateViewModel;
-    private FragmentCalculateBinding binding;
-    //added
     private EditText mCourseGrade;
     private EditText mCourseChoice;
     public Calculator mCalculator = new Calculator();
@@ -33,7 +31,7 @@ public class CalculateFragment extends Fragment {
     private int mGrade;
     private int mGradeEquivalent;
     private float mResult;
-    private final int mCreditUnit = 3;
+    private int mCreditUnit;
     public String mFinalResult;
     static String EMPTY_PLACE = "";
     ArrayList<Course> arrayListOfCourses;
@@ -55,25 +53,26 @@ public class CalculateFragment extends Fragment {
             //make it a string to efficiently compare
             arrayListOfCourses = (ArrayList<Course>) KalkDataManager.getInstance().getCourseArrayList();
             String singleCourse = KalkDataManager.getInstance().getCourse().toString();
-
             String courseCode = mCourseCode.toUpperCase();
             mCourseCode = mCourseChoice.getText().toString();
 
-            for (Course single_course :
-                    arrayListOfCourses) {
+            for (Course single_course : arrayListOfCourses) {
                 if (singleCourse.equals(courseCode)) {
+                    mCreditUnit = single_course.getCreditUnit();
+                    Toast.makeText(getContext(), "credit unit: " + mCreditUnit, Toast.LENGTH_SHORT).show();
+                    mCourseChoice.setText(EMPTY_PLACE);
+                    mGrade = Integer.parseInt(mCourseGrade.getText().toString());
+                    mCourseGrade.setText(EMPTY_PLACE);
+                    mGradeEquivalent = checkGradeEquivalent(mGrade);
+                    mCourseChoice.setFocusable(true);
 
+                    mTotalCreditUnit = mCalculator.calculateTotalCreditUnits(mCreditUnit);
+                    mCreditLoad = mCalculator.calculateCreditLoad(mCreditUnit, mGradeEquivalent);
+                    mTotalCreditLoad = mCalculator.calculateTotalCreditLoad(mCreditLoad);
+                }else{
+                    Snackbar.make(root,"That course is not registered", BaseTransientBottomBar.LENGTH_SHORT).show();
                 }
             }
-            mCourseChoice.setText(EMPTY_PLACE);
-            mGrade = Integer.parseInt(mCourseGrade.getText().toString());
-            mCourseGrade.setText(EMPTY_PLACE);
-            mGradeEquivalent = checkGradeEquivalent(mGrade);
-            mCourseChoice.setFocusable(true);
-
-            mTotalCreditUnit = mCalculator.calculateTotalCreditUnits(mCreditUnit);
-            mCreditLoad = mCalculator.calculateCreditLoad(mCreditUnit, mGradeEquivalent);
-            mTotalCreditLoad = mCalculator.calculateTotalCreditLoad(mCreditLoad);
         });
         //when the user clicks on the previous button
         previousButton.setOnClickListener(view -> Toast.makeText(getContext(), "Nothing to do yet", Toast.LENGTH_SHORT).show());
@@ -82,9 +81,9 @@ public class CalculateFragment extends Fragment {
         doneButton.setOnClickListener(view -> {
             mResult = mCalculator.calculateGP(mTotalCreditLoad, mTotalCreditUnit);
             mFinalResult = String.valueOf(mResult);
-//            Intent calculationActivityIntent = new Intent(getContext(), ResultActivity.class);
-//            calculationActivityIntent.putExtra(Intent.EXTRA_TEXT, mFinalResult);
-//            startActivity(calculationActivityIntent);
+            Intent calculationActivityIntent = new Intent(getContext(), ResultActivity.class);
+            calculationActivityIntent.putExtra(Intent.EXTRA_TEXT, mFinalResult);
+            startActivity(calculationActivityIntent);
 
             //final answer is...
             Toast.makeText(getContext(),"GPA: " + mFinalResult, Toast.LENGTH_SHORT).show();
@@ -118,6 +117,5 @@ public class CalculateFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
     }
 }
