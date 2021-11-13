@@ -13,4 +13,5 @@
     <string name="register_n_the_courses">Register / Remove Courses</string>
     <string name="result">RESULT</string>
     <string name="calculate_cgpa">calculate cgpa</string>
+    <string name="calculate">CALCULATE</string>
 </resources>

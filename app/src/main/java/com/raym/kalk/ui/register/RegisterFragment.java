@@ -35,14 +35,16 @@ public class RegisterFragment extends Fragment {
     private InputMethodManager mInputMethodManager;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        //inflate our layout
         View root = inflater.inflate(R.layout.fragment_register_course, container, false);
-
+        //variable declaration
         mCourseCodeEditText = root.findViewById(R.id.editTxt_course_code);
         mCreditUnitEditText = root.findViewById(R.id.editTxt_credit_unit);
         mRemoveCourseButton = root.findViewById(R.id.remove_course);
         mAddCourseButton = root.findViewById(R.id.button_add_course);
-
+        //make the edit text request focus
+        mCourseCodeEditText.requestFocus();
+        //when the user clicks on the add course button
         mAddCourseButton.setOnClickListener(view -> {
             //get the course code and credit unit from the user and convert them to a string and
             //and int respectively assign them to their respective variables and clear their fields
@@ -54,20 +56,23 @@ public class RegisterFragment extends Fragment {
                 hideKeyBoard();
                 Snackbar.make(root, "Please input the Correct items for the either fields", Snackbar.LENGTH_SHORT).show();
             } else {
-                hideKeyBoard();
+                //collect the data inputted and take the cursor to the first edit text
                 mCourseCode = mCourseCodeEditText.getText().toString().trim();
-                String courseCode = mCourseCode.toUpperCase();
-                mCourseCodeEditText.setText(EMPTY);
-                /*for credit unit*/
                 mCreditUnit = Integer.parseInt(mCreditUnitEditText.getText().toString());
+                //gets the string
+                String courseCode = mCourseCode.toUpperCase();
                 int cu = mCreditUnit;
+                //and clears the field
+                mCourseCodeEditText.setText(EMPTY);
                 mCreditUnitEditText.setText(EMPTY);
+                //make the edit text request focus again
+                mCourseCodeEditText.requestFocus();
                 //pass it to the single object of the Course class
                 mSingleCourse = new Course(courseCode, cu);
                 //set those variables into our course class
                 mSingleCourse.setCourseCode(courseCode);
                 mSingleCourse.setCreditUnit(cu);
-                //finally add that single set course in our arraylist of courses
+                //finally, add that single set course in our arraylist of courses
                 mCoursesArrayList.add(mSingleCourse);
                 //pass that list to our data manager
                 KalkDataManager.getInstance().setCourseArrayList(mCoursesArrayList);

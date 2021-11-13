@@ -76,7 +76,7 @@
             android:layout_marginTop="16dp"
             android:text="* This is not your CGPA, click here to calculate"
             android:textAlignment="center"
-            android:textColor="@color/kalk_red"
+            android:textColor="@color/kalk_danger_color"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             app:layout_constraintEnd_toEndOf="@+id/button"
             app:layout_constraintStart_toStartOf="@+id/button"

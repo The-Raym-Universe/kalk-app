@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#9FAEAC</color>
-    <color name="kalk_red">#630606</color>
+    <color name="kalk_danger_color">#630606</color>
     <color name="kalk_green">#0D7311</color>
     <color name="kalk_light_green">#4ee44e</color>
     <color name="kalk_background">#f2f2f2</color>

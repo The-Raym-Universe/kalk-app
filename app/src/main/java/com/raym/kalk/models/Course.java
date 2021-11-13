@@ -2,6 +2,7 @@ package com.raym.kalk.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import org.jetbrains.annotations.NotNull;
 
 /***Created by Leo*/
 
@@ -40,6 +41,12 @@ public class Course implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(mCourseCode);
         parcel.writeInt(mCreditUnit);
+    }
+
+    @NotNull
+    @Override
+    public String toString() {
+        return mCourseCode;
     }
 
     public String getCourseCode() {
