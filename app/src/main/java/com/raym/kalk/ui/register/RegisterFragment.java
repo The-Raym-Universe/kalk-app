@@ -30,8 +30,6 @@ public class RegisterFragment extends Fragment {
     private final ArrayList<Course> mCoursesArrayList = new ArrayList<>();
     static String EMPTY = "";
 
-
-
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_register_course, container, false);

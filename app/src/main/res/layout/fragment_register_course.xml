@@ -5,38 +5,41 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/kalk_background">
+        android:background="@color/white">
 
     <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Register \n your Courses"
+            android:text="@string/register_n_the_courses"
             android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
+            style="@style/TextAppearance.AppCompat.Button"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="33sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
             android:textAlignment="center"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/button_add_course"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/button_add_course"
             android:id="@+id/textView"/>
 
     <EditText
             android:id="@+id/editTxt_course_code"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="261dp"
+            android:layout_height="44dp"
             android:hint="@string/course_code_hint"
             android:inputType="text"
             android:textColorHint="@color/grey"
             android:typeface="sans"
             android:drawableTint="@color/grey"
-            android:layout_marginTop="34dp"
+            android:layout_marginTop="8dp"
             android:layout_marginStart="34dp"
             android:textAlignment="center"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:outlineProvider="bounds"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/editTxt_credit_unit"
-            app:layout_constraintTop_toBottomOf="@+id/textView"/>
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintHorizontal_bias="0.0"/>
 
     <EditText
             android:id="@+id/editTxt_credit_unit"
@@ -50,7 +53,7 @@
             android:padding="8dp"
             android:textAlignment="center"
             android:outlineAmbientShadowColor="@color/grey"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/editTxt_course_code"
             app:layout_constraintBottom_toBottomOf="@+id/editTxt_course_code"/>
@@ -78,9 +81,8 @@
             android:fontFamily="sans-serif"
             android:padding="16dp"
             android:text="CALCULATE G.P."
-            android:textColor="@color/white"
-            android:backgroundTint="@color/kalk_green"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             app:layout_constraintEnd_toEndOf="@id/button_add_course"
             app:layout_constraintStart_toStartOf="@id/button_add_course"
             app:layout_constraintTop_toBottomOf="@+id/button_add_course"/>
