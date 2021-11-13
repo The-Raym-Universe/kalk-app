@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".ResultActivity"
+                android:name=".activities.ResultActivity"
                 android:label="Result"
                 android:exported="true">
         </activity>

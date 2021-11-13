@@ -37,6 +37,8 @@
             android:textAlignment="center"
             android:outlineProvider="bounds"
             android:textColor="@color/black"
+            android:focusedByDefault="true"
+            android:focusable="true"
             android:imeOptions="actionNext"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/editTxt_credit_unit"

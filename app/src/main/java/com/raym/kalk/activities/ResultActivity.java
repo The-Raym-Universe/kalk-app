@@ -1,10 +1,11 @@
-package com.raym.kalk;
+package com.raym.kalk.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.raym.kalk.R;
 
 /***Created by Leo*/
 

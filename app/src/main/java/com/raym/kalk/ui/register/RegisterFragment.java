@@ -43,8 +43,6 @@ public class RegisterFragment extends Fragment {
         mAddCourseButton = root.findViewById(R.id.button_add_course);
 
         mCalculateGpButton.setOnClickListener(view -> {
-//            Intent courseActivityIntent = new Intent(CourseActivity.this, CalculationActivity.class);
-//            startActivity(courseActivityIntent);
             Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
         });
 
@@ -85,7 +83,7 @@ public class RegisterFragment extends Fragment {
         return root;
     }
 
-    private void hideKeyBoard() {
+    public void hideKeyBoard() {
         mInputMethodManager = (InputMethodManager) Objects.requireNonNull(getContext()).getSystemService(Context.INPUT_METHOD_SERVICE);
         mInputMethodManager.hideSoftInputFromWindow(Objects.requireNonNull(this.getView()).getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
