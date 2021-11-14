@@ -1,12 +1,10 @@
 package com.raym.kalk.ui.calculate;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatSpinner;
@@ -18,12 +16,15 @@ import com.raym.kalk.models.Course;
 import com.raym.kalk.models.KalkDataManager;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class CalculateFragment extends Fragment {
+
+    public CalculateFragment(){
+
+    }
+
     private EditText mCourseGradeEditText;
-    private AppCompatSpinner mAppCompatSpinner;
-    public Calculator mCalculator = new Calculator();
+    public final Calculator mCalculator = new Calculator();
     private String mCourseCode;
     private int mCreditLoad;
     private int mTotalCreditUnit;
@@ -35,22 +36,15 @@ public class CalculateFragment extends Fragment {
     public String mFinalResult;
     final static String EMPTY_PLACE = "";
     ArrayList<Course> arrayListOfCourses;
-    private Button mNextCourseButton;
-    private Button mPreviousButton;
-    private Button mDoneButton;
-    private String mSingleCourse;
-    private InputMethodManager mInputMethodManager;
-    final static String EMPTY = "";
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_calculate, container, false);
 
-        mDoneButton = root.findViewById(R.id.done_button);
-        mPreviousButton = root.findViewById(R.id.previous_course_button);
-        mNextCourseButton = root.findViewById(R.id.next_course_button);
+        Button mDoneButton = root.findViewById(R.id.done_button);
+        Button mNextCourseButton = root.findViewById(R.id.next_course_button);
         mCourseGradeEditText = root.findViewById(R.id.edit_text_grade);
-        mAppCompatSpinner = root.findViewById(R.id.spinner_course_choice);
+        AppCompatSpinner mAppCompatSpinner = root.findViewById(R.id.spinner_course_choice);
 
         arrayListOfCourses = (ArrayList<Course>) KalkDataManager.getInstance().getCourseArrayList();
 
@@ -82,9 +76,7 @@ public class CalculateFragment extends Fragment {
             mCreditLoad = mCalculator.calculateCreditLoad(mCreditUnit, mGradeEquivalent);
             mTotalCreditLoad = mCalculator.calculateTotalCreditLoad(mCreditLoad);
         });
-        //when the user clicks on the previous button
-        mPreviousButton.setOnClickListener(view -> Toast.makeText(getContext(), "Nothing to do yet", Toast.LENGTH_SHORT).show());
-        //nothing really wrong with this lines of code
+        //nothing really wrong with these lines of code
         //when the user clicks on the done button
         mDoneButton.setOnClickListener(view -> {
             //calculate
@@ -95,11 +87,6 @@ public class CalculateFragment extends Fragment {
             startActivity(calculationActivityIntent);
         });
         return root;
-    }
-
-    private void hideKeyBoard() {
-        mInputMethodManager = (InputMethodManager) Objects.requireNonNull(getContext()).getSystemService(Context.INPUT_METHOD_SERVICE);
-        mInputMethodManager.hideSoftInputFromWindow(Objects.requireNonNull(this.getView()).getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     private int checkGradeEquivalent(int grade) {
@@ -125,8 +112,4 @@ public class CalculateFragment extends Fragment {
         return mGradeEquivalent;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
 }

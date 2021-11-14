@@ -6,10 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
@@ -22,31 +21,44 @@ import java.util.Objects;
 
 public class RegisterFragment extends Fragment {
 
-    private final ArrayList<Course> mCourseArrayList = new ArrayList<>();
+    public RegisterFragment(){
+
+    }
+
     private EditText mCourseCodeEditText;
     private EditText mCreditUnitEditText;
-    private Button mRemoveCourseButton;
-    private Button mAddCourseButton;
     private Course mSingleCourse;
     private String mCourseCode;
     private int mCreditUnit;
     private final ArrayList<Course> mCoursesArrayList = new ArrayList<>();
-    static String EMPTY = "";
-    private InputMethodManager mInputMethodManager;
+    static final String EMPTY = "";
+    private AppCompatSpinner mAppCompatSpinner;
+    private int mPosition;
+    private ArrayAdapter<Course> mCourseArrayAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         //inflate our layout
         View root = inflater.inflate(R.layout.fragment_register_course, container, false);
+
         //variable declaration
         mCourseCodeEditText = root.findViewById(R.id.editTxt_course_code);
         mCreditUnitEditText = root.findViewById(R.id.editTxt_credit_unit);
-        mRemoveCourseButton = root.findViewById(R.id.remove_course);
-        mAddCourseButton = root.findViewById(R.id.button_add_course);
+        Button mRemoveCourseButton = root.findViewById(R.id.remove_course);
+        Button mAddCourseButton = root.findViewById(R.id.button_add_course);
+        mAppCompatSpinner = root.findViewById(R.id.spinner_remove_course);
+
         //make the edit text request focus
         mCourseCodeEditText.requestFocus();
+
+        //setup our spinner
+        mCourseArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, KalkDataManager.getInstance().getCourseArrayList());
+        mCourseArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mAppCompatSpinner.setAdapter(mCourseArrayAdapter);
+
         //when the user clicks on the add course button
         mAddCourseButton.setOnClickListener(view -> {
-            //get the course code and credit unit from the user and convert them to a string and
+            //get the course code and credit unit from the user and convert them to a string
             //and int respectively assign them to their respective variables and clear their fields
             /*for course code*/
             if (mCourseCodeEditText.getText().toString().equals("") || mCreditUnitEditText.getText().toString().equals("")) {
@@ -79,23 +91,39 @@ public class RegisterFragment extends Fragment {
                 //when done display a success SnackBar
                 Snackbar.make(root, "Added: " + mSingleCourse.getCourseCode() + "{ " + mSingleCourse.getCreditUnit()
                         + " credit unit(s)}", BaseTransientBottomBar.LENGTH_SHORT).show();
+                //setup our spinner
+                mCourseArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, KalkDataManager.getInstance().getCourseArrayList());
+                mCourseArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                mAppCompatSpinner.setAdapter(mCourseArrayAdapter);
+                mAppCompatSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        mPosition = i;
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+                        //do nothing
+                    }
+                });
             }
         });
 
         mRemoveCourseButton.setOnClickListener(view -> {
-            Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
+            if (mCourseArrayAdapter != null) {
+                mCoursesArrayList.remove(mPosition);
+                Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
+            } else {
+                Snackbar.make(root, "How the hell do you intend to remove... NOTHING, lol", BaseTransientBottomBar.LENGTH_SHORT).show();
+            }
         });
 
         return root;
     }
 
     public void hideKeyBoard() {
-        mInputMethodManager = (InputMethodManager) Objects.requireNonNull(getContext()).getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager mInputMethodManager = (InputMethodManager) Objects.requireNonNull(getContext()).getSystemService(Context.INPUT_METHOD_SERVICE);
         mInputMethodManager.hideSoftInputFromWindow(Objects.requireNonNull(this.getView()).getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
 }

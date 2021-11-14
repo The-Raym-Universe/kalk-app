@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/kalk_background">
@@ -39,6 +38,7 @@
             android:focusable="true"
             android:cursorVisible="true"
             android:imeOptions="actionNext"
+            android:autofillHints="@string/course_code_hint"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/editTxt_credit_unit"
             app:layout_constraintTop_toBottomOf="@+id/textView"/>
@@ -56,6 +56,7 @@
             android:textAlignment="center"
             android:outlineAmbientShadowColor="@color/grey"
             android:imeOptions="actionDone"
+            android:autofillHints="@string/credit_unit_hint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/editTxt_course_code"
             app:layout_constraintTop_toTopOf="@+id/editTxt_course_code"
@@ -68,7 +69,7 @@
             android:layout_marginTop="34dp"
             android:fontFamily="sans-serif"
             android:padding="16dp"
-            android:text="+ add course"
+            android:text="@string/add_course"
             android:textColor="@color/white"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintEnd_toEndOf="@id/editTxt_credit_unit"
@@ -80,7 +81,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/registered_courses"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/button_add_course"
@@ -88,7 +89,7 @@
             app:layout_constraintTop_toBottomOf="@+id/button_add_course"/>
 
     <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/remove_course_spinner"
+            android:id="@+id/spinner_remove_course"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -109,5 +110,5 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"
             app:layout_constraintEnd_toEndOf="@id/button_add_course"
             app:layout_constraintStart_toStartOf="@id/button_add_course"
-            app:layout_constraintTop_toBottomOf="@+id/remove_course_spinner"/>
+            app:layout_constraintTop_toBottomOf="@+id/spinner_remove_course"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

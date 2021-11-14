@@ -5,29 +5,29 @@
             android:id="@+id/navigation_register_course"
             android:icon="@drawable/edit"
             android:iconTint="@color/black"
-            android:title="Register"/>
+            android:title="@string/register"/>
 
     <item
             android:id="@+id/navigation_calculate_gp"
             android:icon="@drawable/calculator"
             android:iconTint="@color/black"
-            android:title="Calculate"/>
+            android:title="@string/calculate_normal_case"/>
 
     <item
             android:id="@+id/navigation_profile"
             android:icon="@drawable/user"
             android:iconTint="@color/black"
-            android:title="Profile"/>
+            android:title="@string/profile"/>
 
     <item
             android:id="@+id/navigation_settings"
             android:icon="@drawable/settings"
             android:iconTint="@color/black"
-            android:title="Settings"/>
+            android:title="@string/settings"/>
 
     <item
             android:id="@+id/navigation_history"
             android:icon="@drawable/history"
             android:iconTint="@color/black"
-            android:title="History"/>
+            android:title="@string/history"/>
 </menu>

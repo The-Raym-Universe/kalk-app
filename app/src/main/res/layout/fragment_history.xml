@@ -10,10 +10,11 @@
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="label"
+            android:hint="@string/yellow_label"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:boxStrokeColor="@color/white"
             app:boxStrokeWidth="40dp">
+
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -22,7 +23,7 @@
     <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="blue text"
+            android:text="@string/blue_text"
             app:strokeColor="@color/white"
             app:strokeWidth="30dp"
             android:textColor="@color/black"

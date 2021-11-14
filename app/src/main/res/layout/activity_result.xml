@@ -9,7 +9,6 @@
         android:background="@color/kalk_background">
 
     <TextView
-            android:id="@+id/result_title"
             android:layout_marginTop="100dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Grade Point Average"
+                android:text="@string/grade_point_average"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
@@ -51,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:padding="8dp"
-                    android:text="5.00"
+                    android:text="@string/_5_00"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
         </com.google.android.material.card.MaterialCardView>
@@ -68,13 +67,12 @@
             android:id="@+id/button"/>
 
     <TextView
-            android:id="@+id/notice_to_calculate_cgpa"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="8dp"
             android:layout_marginTop="16dp"
-            android:text="* This is not your CGPA, click here to calculate"
+            android:text="@string/this_is_not_your_cgpa_click_calculate_cgpa_to_calculate"
             android:textAlignment="center"
             android:textColor="@color/kalk_danger_color"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"

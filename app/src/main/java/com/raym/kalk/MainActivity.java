@@ -13,14 +13,12 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        com.raym.kalk.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         BottomNavigationView navView = findViewById(R.id.nav_view);

@@ -3,8 +3,6 @@ package com.raym.kalk.models;
 /***Created by Leo*/
 
 public class Calculator {
-    int mCreditUnit = 0;
-    int mGradeValue = 0;
     float mResult = 0;
     int mCreditLoad = 0;
     int mTotalCreditUnits = 0;

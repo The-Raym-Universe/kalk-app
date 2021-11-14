@@ -18,7 +18,6 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         Objects.requireNonNull(getSupportActionBar()).hide();
-        TextView noticeGradeResult = findViewById(R.id.notice_grade_result);
         TextView gradeResult = findViewById(R.id.grade_result);
 
         Intent calculationActivityIntent = getIntent();

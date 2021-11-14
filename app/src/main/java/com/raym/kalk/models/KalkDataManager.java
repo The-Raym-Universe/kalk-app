@@ -25,18 +25,6 @@ public class KalkDataManager {
         return ourInstance;
     }
 
-    public int getLastCoursePosition(List<Course> courses) {
-        return courses.size() - 1;
-    }
-
-    public Course getCourse() {
-        return mCourse;
-    }
-
-    public void setCourse(Course course) {
-        mCourse = course;
-    }
-
     public List<Course> getCourseArrayList() {
         return mCourseArrayList;
     }
