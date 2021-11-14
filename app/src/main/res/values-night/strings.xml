@@ -14,4 +14,6 @@
     <string name="result">RESULT</string>
     <string name="calculate_cgpa">calculate cgpa</string>
     <string name="calculate">CALCULATE</string>
+    <string name="remove_course">Remove course</string>
+    <string name="registered_courses">Registered courses</string>
 </resources>

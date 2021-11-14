@@ -7,10 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.fragment.app.Fragment;
@@ -25,7 +22,6 @@ import java.util.Objects;
 
 public class CalculateFragment extends Fragment {
     private EditText mCourseGradeEditText;
-//    private EditText mCourseChoiceEditText;
     private AppCompatSpinner mAppCompatSpinner;
     public Calculator mCalculator = new Calculator();
     private String mCourseCode;
@@ -53,7 +49,6 @@ public class CalculateFragment extends Fragment {
         mDoneButton = root.findViewById(R.id.done_button);
         mPreviousButton = root.findViewById(R.id.previous_course_button);
         mNextCourseButton = root.findViewById(R.id.next_course_button);
-//        mCourseChoiceEditText = root.findViewById(R.id.spinner_course_choice);
         mCourseGradeEditText = root.findViewById(R.id.edit_text_grade);
         mAppCompatSpinner = root.findViewById(R.id.spinner_course_choice);
 
@@ -62,33 +57,30 @@ public class CalculateFragment extends Fragment {
         ArrayAdapter<Course> courseArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, arrayListOfCourses);
         courseArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mAppCompatSpinner.setAdapter(courseArrayAdapter);
+        mAppCompatSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                mCourseCode = arrayListOfCourses.get(i).getCourseCode();
+                mCreditUnit = arrayListOfCourses.get(i).getCreditUnit();
+                Toast.makeText(getContext(), "selected: " + mCourseCode + "{" + mCreditUnit + " credit unit(s)}", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
 
         mNextCourseButton.setOnClickListener(view -> {
-            //to compare this data, we should get the array list first then we get a single course
-            //make it a string to efficiently compare
-//            mCourseCode = mCourseChoiceEditText.getText().toString();
-//            String courseCode = mCourseCode.toUpperCase();
-//            for ( int i = 0; i < arrayListOfCourses.size(); i++) {
-//                mSingleCourse = KalkDataManager.getInstance().getCourseArrayList().get(i).getCourseCode();
-//                if (mSingleCourse.equals(courseCode) && KalkDataManager.getInstance().getCourseArrayList().get(i) != null) {
-//                    mCreditUnit = KalkDataManager.getInstance().getCourseArrayList().get(i).getCreditUnit();
-//                    Toast.makeText(getContext(), "credit unit: " + mCreditUnit, Toast.LENGTH_SHORT).show();
-//                    mCourseChoiceEditText.setText(EMPTY_PLACE);
-//                    mGrade = Integer.parseInt(mCourseGradeEditText.getText().toString());
-//                    mCourseGradeEditText.setText(EMPTY_PLACE);
-//                    mGradeEquivalent = checkGradeEquivalent(mGrade);
-//
-//                    mTotalCreditUnit = mCalculator.calculateTotalCreditUnits(mCreditUnit);
-//                    mCreditLoad = mCalculator.calculateCreditLoad(mCreditUnit, mGradeEquivalent);
-//                    mTotalCreditLoad = mCalculator.calculateTotalCreditLoad(mCreditLoad);
-//                }else{
-//                    hideKeyBoard();
-//                    mCourseGradeEditText.setText(EMPTY);
-//                    mCourseChoiceEditText.setText(EMPTY);
-//                    mCourseChoiceEditText.setFocusable(View.FOCUSABLE);
-//                    Snackbar.make(root,"That course is not registered or does not exist, Try again.", BaseTransientBottomBar.LENGTH_SHORT).show();
-//                }
-//            }
+            //collect the input from the spinner and get its credit unit, and collect the grade
+            mGrade = Integer.parseInt(mCourseGradeEditText.getText().toString());
+            mCourseGradeEditText.setText(EMPTY_PLACE);
+            mCourseGradeEditText.requestFocus();
+            //check grade equivalent
+            mGradeEquivalent = checkGradeEquivalent(mGrade);
+            //start actual calculations
+            mTotalCreditUnit = mCalculator.calculateTotalCreditUnits(mCreditUnit);
+            mCreditLoad = mCalculator.calculateCreditLoad(mCreditUnit, mGradeEquivalent);
+            mTotalCreditLoad = mCalculator.calculateTotalCreditLoad(mCreditLoad);
         });
         //when the user clicks on the previous button
         mPreviousButton.setOnClickListener(view -> Toast.makeText(getContext(), "Nothing to do yet", Toast.LENGTH_SHORT).show());
@@ -101,9 +93,6 @@ public class CalculateFragment extends Fragment {
             Intent calculationActivityIntent = new Intent(getContext(), ResultActivity.class);
             calculationActivityIntent.putExtra(Intent.EXTRA_TEXT, mFinalResult);
             startActivity(calculationActivityIntent);
-
-            //final answer is...
-            Toast.makeText(getContext(),"GPA: " + mFinalResult, Toast.LENGTH_SHORT).show();
         });
         return root;
     }
