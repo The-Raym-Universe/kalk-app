@@ -47,6 +47,7 @@ public class RegisterFragment extends Fragment {
         Button mRemoveCourseButton = root.findViewById(R.id.remove_course);
         Button mAddCourseButton = root.findViewById(R.id.button_add_course);
         mAppCompatSpinner = root.findViewById(R.id.spinner_remove_course);
+        TextView txtRegisteredCourses = root.findViewById(R.id.txt_registered_courses);
 
         //make the edit text request focus
         mCourseCodeEditText.requestFocus();
@@ -63,7 +64,7 @@ public class RegisterFragment extends Fragment {
             /*for course code*/
             if (mCourseCodeEditText.getText().toString().equals("") || mCreditUnitEditText.getText().toString().equals("")) {
                 hideKeyBoard();
-                Snackbar.make(root, "Cannot Input Empty Values for Either Course code or Credit Unit, DUH!!", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(root, "Cannot Input Empty Values for Either Course code or Credit Unit", Snackbar.LENGTH_SHORT).show();
             } else if (mCourseCodeEditText.getText().toString().length() < 3 || Integer.parseInt(mCreditUnitEditText.getText().toString()) < 0) {
                 hideKeyBoard();
                 Snackbar.make(root, "Please input the Correct items for the either fields", Snackbar.LENGTH_SHORT).show();
@@ -99,6 +100,7 @@ public class RegisterFragment extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                         mPosition = i;
+                        mAppCompatSpinner.getItemAtPosition(mPosition);
                     }
 
                     @Override
@@ -106,12 +108,18 @@ public class RegisterFragment extends Fragment {
                         //do nothing
                     }
                 });
+
+                //bring up the visibility
+                mAppCompatSpinner.setVisibility(View.VISIBLE);
+                txtRegisteredCourses.setVisibility(View.VISIBLE);
+                mRemoveCourseButton.setVisibility(View.VISIBLE);
             }
         });
 
         mRemoveCourseButton.setOnClickListener(view -> {
             if (mCourseArrayAdapter != null) {
                 mCoursesArrayList.remove(mPosition);
+                mCourseArrayAdapter.notifyDataSetChanged();
                 Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
             } else {
                 Snackbar.make(root, "How the hell do you intend to remove... NOTHING, lol", BaseTransientBottomBar.LENGTH_SHORT).show();
