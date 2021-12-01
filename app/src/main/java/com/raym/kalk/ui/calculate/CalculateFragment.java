@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class CalculateFragment extends Fragment {
 
-    public CalculateFragment(){
+    public CalculateFragment() {
 
     }
 
@@ -66,25 +66,37 @@ public class CalculateFragment extends Fragment {
 
         mNextCourseButton.setOnClickListener(view -> {
             //collect the input from the spinner and get its credit unit, and collect the grade
-            mGrade = Integer.parseInt(mCourseGradeEditText.getText().toString());
-            mCourseGradeEditText.setText(EMPTY_PLACE);
-            mCourseGradeEditText.requestFocus();
-            //check grade equivalent
-            mGradeEquivalent = checkGradeEquivalent(mGrade);
-            //start actual calculations
-            mTotalCreditUnit = mCalculator.calculateTotalCreditUnits(mCreditUnit);
-            mCreditLoad = mCalculator.calculateCreditLoad(mCreditUnit, mGradeEquivalent);
-            mTotalCreditLoad = mCalculator.calculateTotalCreditLoad(mCreditLoad);
+            if (mCourseGradeEditText.getText().toString().equals("") || mCourseGradeEditText == null) {
+                Toast.makeText(getContext(), "Cannot Solve with empty value for grade"
+                        , Toast.LENGTH_SHORT).show();
+                mCourseGradeEditText.requestFocus();
+            } else {
+                mGrade = Integer.parseInt(mCourseGradeEditText.getText().toString());
+                mCourseGradeEditText.setText(EMPTY_PLACE);
+                mCourseGradeEditText.requestFocus();
+                //check grade equivalent
+                mGradeEquivalent = checkGradeEquivalent(mGrade);
+                //start actual calculations
+                mTotalCreditUnit = mCalculator.calculateTotalCreditUnits(mCreditUnit);
+                mCreditLoad = mCalculator.calculateCreditLoad(mCreditUnit, mGradeEquivalent);
+                mTotalCreditLoad = mCalculator.calculateTotalCreditLoad(mCreditLoad);
+            }
         });
         //nothing really wrong with these lines of code
         //when the user clicks on the done button
         mDoneButton.setOnClickListener(view -> {
             //calculate
-            mResult = mCalculator.calculateGP(mTotalCreditLoad, mTotalCreditUnit);
-            mFinalResult = String.valueOf(mResult);
-            Intent calculationActivityIntent = new Intent(getContext(), ResultActivity.class);
-            calculationActivityIntent.putExtra(Intent.EXTRA_TEXT, mFinalResult);
-            startActivity(calculationActivityIntent);
+            if (mCourseGradeEditText.getText().toString().equals("") || mCourseGradeEditText == null) {
+                Toast.makeText(getContext(), "Cannot Solve with empty value for grade"
+                        , Toast.LENGTH_SHORT).show();
+                mCourseGradeEditText.requestFocus();
+            } else {
+                mResult = mCalculator.calculateGP(mTotalCreditLoad, mTotalCreditUnit);
+                mFinalResult = String.valueOf(mResult);
+                Intent calculationActivityIntent = new Intent(getContext(), ResultActivity.class);
+                calculationActivityIntent.putExtra(Intent.EXTRA_TEXT, mFinalResult);
+                startActivity(calculationActivityIntent);
+            }
         });
         return root;
     }

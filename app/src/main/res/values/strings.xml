@@ -3,7 +3,7 @@
     <string name="course_code_hint"><i>Course Code</i></string>
     <string name="credit_unit_hint"><i>Credit Unit</i></string>
     <string name="course_hint"><i>Example: "MTH101"</i></string>
-    <string name="grade_hint"><i>Example: "75"</i></string>
+    <string name="grade_hint"><i>grade for the course"</i></string>
     <string name="register_n_the_courses">Register / Remove Courses</string>
     <string name="result">RESULT</string>
     <string name="calculate_cgpa">calculate cgpa</string>
