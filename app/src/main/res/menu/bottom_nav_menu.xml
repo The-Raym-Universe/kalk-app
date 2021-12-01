@@ -14,10 +14,10 @@
             android:title="@string/calculate_normal_case"/>
 
     <item
-            android:id="@+id/navigation_profile"
-            android:icon="@drawable/user"
+            android:id="@+id/navigation_home"
+            android:icon="@drawable/baseline_apartment_24"
             android:iconTint="@color/black"
-            android:title="@string/profile"/>
+            android:title="@string/home"/>
 
     <item
             android:id="@+id/navigation_settings"
